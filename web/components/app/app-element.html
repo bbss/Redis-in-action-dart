@@ -1,0 +1,99 @@
+<link rel="import" href="../article/article-element.html">
+
+<polymer-element name="app-element">
+  <template>
+  <style>
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 300;
+        src: local('Open Sans Light'), local('OpenSans-Light'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+      }
+      
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+      }
+      
+      body {
+        margin:0;
+      }     
+         
+      ul {
+        border: 1px solid #FFCBCB;
+        border-radius: 7px;
+        list-style: none;
+        padding: 10px 0 10px 0;
+        margin: 0;
+        z-index: 9999;
+        position: absolute;
+        background-color: #FFCBCB;
+      }
+      
+      li {
+        padding: 15px;
+      }
+      
+      li:hover {
+        background-color: #FFEFEF;
+      }
+      
+      .header-title { 
+        margin:0;
+        color: #636363;
+        padding: 20px;
+        font-size: 30px;
+        font-weight: 300;
+        background-color: #EEE;
+      }
+      
+      #as-user {
+        font-size: 15px;
+        float:right
+      }
+      
+      .app-body {
+        display: flex;
+        padding: 50px;
+        font-family: 'Open Sans', sans-serif;
+      }
+      
+      .app-left {
+        flex: 1;
+      }
+      
+      .app-right {
+        flex: 0 0 20em;
+      }
+  </style>
+  <header>
+    <h1 class="header-title">Articles stored in Redis
+      <span id="as-user">As user: 
+        <input type="number" min="1" value="{{ user.id }}" placeholder="id">
+      </span>
+    </h1>
+    
+  </header>
+  <div class="app-body">
+    <main class="app-left">
+    <h1>Articles</h1>
+      <ul>
+        <template repeat="{{ article in articles }}">
+          <li is="article-element" article="{{ article }}"></li>
+        </template>
+      </ul>
+    </main>
+    <form class="app-right" method="post" on-submit="{{submit}}">
+      
+      <h2>Submit article</h2>
+      <input type="text" value="{{ newArticle.title }}" placeholder="title">
+      <input type="text" value="{{ newArticle.link }}" placeholder="url">
+      <input type="submit">
+      
+    </form>
+  </div>
+  </template>
+  <script type="application/dart" src="app_view.dart"></script>
+</polymer-element>

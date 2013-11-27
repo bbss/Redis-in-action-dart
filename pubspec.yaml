@@ -1,0 +1,10 @@
+name: redis_in_action_dart
+description: A sample Polymer application
+dependencies:
+  polymer: ">=0.9.1 <1.0.0"
+  redis_client: any
+  route_hierarchical: any
+  unittest: any
+transformers:
+- polymer:
+    entry_points: web/index.html
